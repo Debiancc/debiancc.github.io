@@ -320,18 +320,18 @@
       
         
           
-            <p>记录下去年的解决的大坑。</p>
-<p>最近线上的MongoDB服务器（4Core  8G RAM）硬件资源占用的有些奇怪，10分钟内几百个请求就可以轻松把这机器整的明明白白的。</p>
-<p>在使用控制变量法排除排除IO瓶颈，带宽瓶颈，服务器超卖等问题，顺着锅飞行轨迹来到了MongoDB身上。</p>
-<p>通过MongoDB Database Profiler可以发现我们可爱的索引们似乎并没有发挥作用。works这个数值竟然高达18w，这基本上是这张collection数据量。这就表示说我们的id索引似乎在混吃等死。</p>
-<p><img src="/images/pasted-2.png" alt="upload successful"></p>
-<p>这基本等价于做全表扫描，所谓索引的意义在于降低查询引起资源开销（比如，将查询复杂度从O(n)降低为O(1)），而是通过特定的数据结构采用空间换时间的办法从而实现查询加速。这种思路类似在数组中需要过滤数据的时我们只能不停的去遍历item，判断其是否符合条件。但如果把条件的结果作为key全部都压到散列(Object)里面，这时只需要key就可以访问到你想要的rows。当然了，目前数据库引擎实现这种索引结构可没有这么简单，行业通行的做法是 B-Tree / B-Tree+。</p>
-<p>但为什么索引不生效？其实索引是生效的，只不过扫描整表换成了扫描全部索引。这个时候继续往filter里面看，好像filter里的value是正则耶，是 正 则 耶！！真是打扰了，索引的下来的id全部是string，但是在匹配的时条件是正则表达式。所以索引不能被直接命中，要不断的遍历啊。</p>
-<p>但这种骨骼惊奇find写法并没有出现在的项目的代码里面，这只能再去检查Sails底层ORM(Waterline)的代码。直接来到sails-mongo这个npm，找到在Query时候parseValue这个方法，嗯，看到了ObjectId。我从接盘开始就在使用UUID，我们先看代码。</p>
-<p><img src="/images/pasted-3.png" alt="upload successful"></p>
-<p>注意最后这段block的代码，不是非常赞许sails团队是这么实现关键sql拼接逻辑，虽说ObjectId是MongoDB官方推崇的实践标准。但是强行把string变正则，在ORM中ParseValue这么关键的地方。而caseSensitive又是一个隐藏配置，就是那种你不去看源码就发现不到的那种配置。。好啦，原因已经找到了。要么换id type，要么sails-mongo fork出来改改代码，要么把这个condition给跳出去吧。如果你想为sails提交PR，对不起，人家团队比较稳定，喜欢自己修。</p>
-
-          
+          记录下去年的解决的大坑。
+最近线上的MongoDB服务器（4Core  8G RAM）硬件资源占用的有些奇怪，10分钟内几百个请求就可以轻松把这机器整的明明白白的。
+在使用控制变量法排除排除IO瓶颈，带宽瓶颈，服务器超卖等问题，顺着锅飞行轨迹来到了MongoDB身上。
+通过MongoDB Datab
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/05/Sails-js-MongoDB-UUID-性能怪兽/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
