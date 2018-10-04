@@ -88,7 +88,7 @@
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="http://debiancc.me/images/pasted-2.png">
 <meta property="og:image" content="http://debiancc.me/images/pasted-3.png">
-<meta property="og:updated_time" content="2018-10-04T17:08:30.722Z">
+<meta property="og:updated_time" content="2018-10-04T18:05:49.383Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sails.js + MongoDB + UUID = 性能怪兽">
 <meta name="twitter:description" content="记录下去年的解决的大坑。 最近线上的MongoDB服务器（4Core  8G RAM）硬件资源占用的有些奇怪，10分钟内几百个请求就可以轻松把这机器整的明明白白的。 在使用控制变量法排除排除IO瓶颈，带宽瓶颈，服务器超卖等问题，顺着锅飞行轨迹来到了MongoDB身上。 通过MongoDB Database Profiler可以发现我们可爱的索引们似乎并没有发挥作用。works这个数值竟然高达18w">
@@ -274,7 +274,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-05T01:01:37+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-05T01:01:00+08:00">
                 2018-10-05
               </time>
             
@@ -331,7 +331,9 @@
 <p>但为什么索引不生效？其实索引是生效的，只不过扫描整表换成了扫描全部索引。这个时候继续往filter里面看，好像filter里的value是正则耶，是 正 则 耶！！真是打扰了，索引的下来的id全部是string，但是在匹配的时条件是正则表达式。所以索引不能被直接命中，要不断的遍历啊。</p>
 <p>但这种骨骼惊奇find写法并没有出现在的项目的代码里面，这只能再去检查Sails底层ORM(Waterline)的代码。直接来到sails-mongo这个npm，找到在Query时候parseValue这个方法，嗯，看到了ObjectId。我从接盘开始就在使用UUID，我们先看代码。</p>
 <p><img src="/images/pasted-3.png" alt="upload successful"></p>
-<p>注意最后这段block的代码，不是非常赞许sails团队是这么实现关键sql拼接逻辑，虽说ObjectId是MongoDB官方推崇的实践标准。但是强行把string变正则，在ORM中ParseValue这么关键的地方。而caseSensitive又是一个隐藏配置，就是那种你不去看源码就发现不到的那种配置。。好啦，原因已经找到了。要么换id type，要么sails-mongo fork出来改改代码，要么把这个condition给跳出去吧。如果你想为sails提交PR，对不起，人家团队比较稳定，喜欢自己修。</p>
+<p>注意最后这段block的代码，不是非常赞许sails团队是这么实现关键sql拼接逻辑，虽说ObjectId是MongoDB官方推崇的实践标准。但是强行把type: UUID的string变正则，在ORM中ParseValue这么关键的地方个人觉得甚是草率。而caseSensitive又是一个为下个major版本做的隐藏配置，文档上找不到任何相关说明。</p>
+<p>原因已经找到了。要么换id type，要么sails-mongo fork出来改改代码，要么把这个condition给跳出去吧。</p>
+<p><em>反思：在之前的工作经历中，团队对开源持开放并且友好态度。但因为行业敏感度问题，使用开源代码也会做一定程度上的代码审查&amp;法律合规性检查，特别是没有成熟之前的repo（issue没有大规模爆发，last commit几年前..）条件极为严苛。其实像Sails.js这样的问题，一定程度上在前期AB的时候是可以被过滤掉的。我仔细观察过Sails.js社区早已不活跃，为数不多的几个贡献者是来自背后运营的商业公司。社区里面贡献的代码会被maintainer洋洋洒洒写几页纸的理由驳回掉，这就造成一种恶性循环，公司要靠业务来赚钱，公司资源上的投入非常有限。又不接受来自社区的意见和贡献，长此下去此命休矣。</em></p>
 
       
     </div>
