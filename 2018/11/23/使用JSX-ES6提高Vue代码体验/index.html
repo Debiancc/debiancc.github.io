@@ -79,20 +79,19 @@
 
 
 
-<meta name="description" content="记录下去年的解决的大坑。 最近线上的MongoDB服务器（4Core  8G RAM）硬件资源占用的有些奇怪，10分钟内几百个请求就可以轻松把这机器整的明明白白的。 在使用控制变量法排除排除IO瓶颈，带宽瓶颈，服务器超卖等问题，顺着锅飞行轨迹来到了MongoDB身上。 通过MongoDB Database Profiler可以发现我们可爱的索引们似乎并没有发挥作用。works这个数值竟然高达18w">
+<meta name="description" content="其实这也不是什么大新闻了，从Vue2.x开始Vue和React一样实现了render函数, 也实现了一样Diff Visual DOM的渲染方式。官网文档中也有提及JSX在Vue中正确的开箱方式，这里不多赘述怎样在现有项目中引入JSX支持，更多的来谈一谈引入JSX后良好的编程体验。 在Tempalte上需要 JavaScript 的完全编程能力首先需要说明的是我个人对v-if v-for这两个d">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sails.js + MongoDB + UUID = 性能怪兽">
-<meta property="og:url" content="http://debiancc.me/2018/10/03/Sails-js-MongoDB-UUID-性能怪兽/index.html">
+<meta property="og:title" content="使用JSX &amp; ES6提升Vue编程体验">
+<meta property="og:url" content="http://debiancc.me/2018/11/23/使用JSX-ES6提高Vue代码体验/index.html">
 <meta property="og:site_name" content="Never Stop Exploring">
-<meta property="og:description" content="记录下去年的解决的大坑。 最近线上的MongoDB服务器（4Core  8G RAM）硬件资源占用的有些奇怪，10分钟内几百个请求就可以轻松把这机器整的明明白白的。 在使用控制变量法排除排除IO瓶颈，带宽瓶颈，服务器超卖等问题，顺着锅飞行轨迹来到了MongoDB身上。 通过MongoDB Database Profiler可以发现我们可爱的索引们似乎并没有发挥作用。works这个数值竟然高达18w">
+<meta property="og:description" content="其实这也不是什么大新闻了，从Vue2.x开始Vue和React一样实现了render函数, 也实现了一样Diff Visual DOM的渲染方式。官网文档中也有提及JSX在Vue中正确的开箱方式，这里不多赘述怎样在现有项目中引入JSX支持，更多的来谈一谈引入JSX后良好的编程体验。 在Tempalte上需要 JavaScript 的完全编程能力首先需要说明的是我个人对v-if v-for这两个d">
 <meta property="og:locale" content="zh">
-<meta property="og:image" content="http://debiancc.me/images/pasted-2.png">
-<meta property="og:image" content="http://debiancc.me/images/pasted-3.png">
-<meta property="og:updated_time" content="2018-10-04T18:08:58.750Z">
+<meta property="og:image" content="http://debiancc.me/images/pasted-4.png">
+<meta property="og:updated_time" content="2018-11-24T13:09:36.990Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sails.js + MongoDB + UUID = 性能怪兽">
-<meta name="twitter:description" content="记录下去年的解决的大坑。 最近线上的MongoDB服务器（4Core  8G RAM）硬件资源占用的有些奇怪，10分钟内几百个请求就可以轻松把这机器整的明明白白的。 在使用控制变量法排除排除IO瓶颈，带宽瓶颈，服务器超卖等问题，顺着锅飞行轨迹来到了MongoDB身上。 通过MongoDB Database Profiler可以发现我们可爱的索引们似乎并没有发挥作用。works这个数值竟然高达18w">
-<meta name="twitter:image" content="http://debiancc.me/images/pasted-2.png">
+<meta name="twitter:title" content="使用JSX &amp; ES6提升Vue编程体验">
+<meta name="twitter:description" content="其实这也不是什么大新闻了，从Vue2.x开始Vue和React一样实现了render函数, 也实现了一样Diff Visual DOM的渲染方式。官网文档中也有提及JSX在Vue中正确的开箱方式，这里不多赘述怎样在现有项目中引入JSX支持，更多的来谈一谈引入JSX后良好的编程体验。 在Tempalte上需要 JavaScript 的完全编程能力首先需要说明的是我个人对v-if v-for这两个d">
+<meta name="twitter:image" content="http://debiancc.me/images/pasted-4.png">
 
 
 
@@ -122,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://debiancc.me/2018/10/03/Sails-js-MongoDB-UUID-性能怪兽/"/>
+  <link rel="canonical" href="http://debiancc.me/2018/11/23/使用JSX-ES6提高Vue代码体验/"/>
 
 
 
 
 
-  <title>Sails.js + MongoDB + UUID = 性能怪兽 | Never Stop Exploring</title>
+  <title>使用JSX & ES6提升Vue编程体验 | Never Stop Exploring</title>
   
 
 
@@ -245,7 +244,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://debiancc.me/2018/10/03/Sails-js-MongoDB-UUID-性能怪兽/">
+    <link itemprop="mainEntityOfPage" href="http://debiancc.me/2018/11/23/使用JSX-ES6提高Vue代码体验/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="debaincc">
@@ -262,7 +261,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Sails.js + MongoDB + UUID = 性能怪兽</h1>
+          <h1 class="post-title" itemprop="name headline">使用JSX & ES6提升Vue编程体验</h1>
         
 
         <div class="post-meta">
@@ -274,8 +273,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-03T01:01:00+08:00">
-                2018-10-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-23T17:19:00+08:00">
+                2018-11-23
               </time>
             
 
@@ -293,8 +292,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/10/03/Sails-js-MongoDB-UUID-性能怪兽/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/03/Sails-js-MongoDB-UUID-性能怪兽/" itemprop="commentCount"></span>
+                <a href="/2018/11/23/使用JSX-ES6提高Vue代码体验/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/23/使用JSX-ES6提高Vue代码体验/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -322,18 +321,11 @@
       
 
       
-        <p>记录下去年的解决的大坑。</p>
-<p>最近线上的MongoDB服务器（4Core  8G RAM）硬件资源占用的有些奇怪，10分钟内几百个请求就可以轻松把这机器整的明明白白的。</p>
-<p>在使用控制变量法排除排除IO瓶颈，带宽瓶颈，服务器超卖等问题，顺着锅飞行轨迹来到了MongoDB身上。</p>
-<p>通过MongoDB Database Profiler可以发现我们可爱的索引们似乎并没有发挥作用。works这个数值竟然高达18w，这基本上是这张collection数据量。这就表示说我们的id索引似乎在混吃等死。</p>
-<p><img src="/images/pasted-2.png" alt="upload successful"></p>
-<p>这基本等价于做全表扫描，所谓索引的意义在于降低查询引起资源开销（比如，将查询复杂度从O(n)降低为O(1)），通过特定的数据结构采用空间换时间的办法从而实现查询加速。这种思路类似在数组中需要过滤数据的时我们只能不停的去遍历item，判断其是否符合条件。但如果把条件的结果作为key全部都压到散列(Object)里面，这时只需要key就可以访问到你想要的rows。当然了，目前数据库引擎实现这种索引结构可没有这么简单，行业通行的做法是 B-Tree / B-Tree+。</p>
-<p>但为什么索引不生效？其实索引是生效的，只不过扫描整表换成了扫描全部索引。这个时候继续往filter里面看，好像filter里的value是正则耶，是 正 则 耶！！真是打扰了，索引的下来的id全部是string，但是在匹配的时条件是正则表达式。所以索引不能被直接命中，要不断的遍历啊。</p>
-<p>但这种骨骼惊奇find写法并没有出现在的项目的代码里面，这只能再去检查Sails底层ORM(Waterline)的代码。直接来到sails-mongo这个npm，找到在Query时候parseValue这个方法，嗯，看到了ObjectId。我从接盘开始就在使用UUID，我们先看代码。</p>
-<p><img src="/images/pasted-3.png" alt="upload successful"></p>
-<p>注意最后这段block的代码，不是非常赞许sails团队是这么实现关键sql拼接逻辑，虽说ObjectId是MongoDB官方推崇的实践标准。但是强行把type: UUID的string变正则，在ORM中ParseValue这么关键的地方个人觉得甚是草率。而caseSensitive又是一个为下个major版本做的隐藏兼容配置，文档上找不到任何相关说明。</p>
-<p>原因已经找到了。要么换id type，要么sails-mongo fork出来改改代码，要么把这个condition给跳出去吧。</p>
-<p><em>反思：在之前的工作经历中，团队对开源持开放并且友好态度。但因为行业敏感度问题，使用开源代码也会做一定程度上的代码审查&amp;法律合规性检查，特别是没有成熟之前的repo（issue没有大规模爆发，last commit几年前..）条件极为严苛。其实像Sails.js这样的问题，一定程度上在前期AB的时候是可以被过滤掉的。我仔细观察过Sails.js社区早已不活跃，为数不多的几个贡献者是来自背后运营的商业公司。社区里面贡献的代码会被maintainer洋洋洒洒写几页纸的理由驳回掉，这就造成一种恶性循环，公司要靠业务来赚钱，公司资源上的投入非常有限。又不接受来自社区的意见和贡献，长此下去此命休矣。</em></p>
+        <p><img src="/images/pasted-4.png" alt="Item.vue"></p>
+<p>其实这也不是什么大新闻了，从Vue2.x开始Vue和React一样实现了render函数, 也实现了一样Diff Visual DOM的渲染方式。官网文档中也有提及JSX在Vue中正确的开箱方式，这里不多赘述怎样在现有项目中引入JSX支持，更多的来谈一谈引入JSX后良好的编程体验。</p>
+<h5 id="在Tempalte上需要-JavaScript-的完全编程能力"><a href="#在Tempalte上需要-JavaScript-的完全编程能力" class="headerlink" title="在Tempalte上需要 JavaScript 的完全编程能力"></a>在Tempalte上需要 JavaScript 的完全编程能力</h5><p>首先需要说明的是我个人对<code>v-if</code> <code>v-for</code>这两个directives使用是有些抗拒的，有些违背逻辑直觉。就像之前写Ruby时看到这样的代码 <code>return true if wtf?</code>（<code>?</code>在Ruby中用于将类型转换为Boolean），在复杂场景下我更关心在什么条件下他会执行逻辑，而不是执行什么逻辑在什么条件下。我不止一次在Ruby和Vue Template的代码中看到这样懵逼的情况出现。在<code>v-for</code>的使用上也是有些的这样意味，但是<code>v-for</code>最为致命的是无法在循环体内加入复杂逻辑，Vue社区哲学强调你应该使用响应式编程的派生对象(<code>computed</code>)来解决，Template上应该保持他的纯净。社区这么洁癖为什么要把模板 逻辑 样式丢在一个文件里。</p>
+<p>无法声明变量，无法调试模板，无法方便的打印关键信息。还有就是文档中也有多次提及render函数比Vue Template更接近Vue compiler，而Vue中的JSX则是和React一样，只是一层createElement语法糖。</p>
+<h5 id="更多的ES6标准看齐"><a href="#更多的ES6标准看齐" class="headerlink" title="更多的ES6标准看齐"></a>更多的ES6标准看齐</h5><p>8012年了，大清都亡了。</p>
 
       
     </div>
@@ -354,7 +346,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="http://debiancc.me/2018/10/03/Sails-js-MongoDB-UUID-性能怪兽/" title="Sails.js + MongoDB + UUID = 性能怪兽">http://debiancc.me/2018/10/03/Sails-js-MongoDB-UUID-性能怪兽/</a>
+    <a href="http://debiancc.me/2018/11/23/使用JSX-ES6提高Vue代码体验/" title="使用JSX & ES6提升Vue编程体验">http://debiancc.me/2018/11/23/使用JSX-ES6提高Vue代码体验/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -376,15 +368,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/10/03/Sails-js-MongoDB-UUID-性能怪兽/" rel="next" title="Sails.js + MongoDB + UUID = 性能怪兽">
+                <i class="fa fa-chevron-left"></i> Sails.js + MongoDB + UUID = 性能怪兽
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/23/使用JSX-ES6提高Vue代码体验/" rel="prev" title="使用JSX & ES6提升Vue编程体验">
-                使用JSX & ES6提升Vue编程体验 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -439,8 +431,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -498,6 +499,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#在Tempalte上需要-JavaScript-的完全编程能力"><span class="nav-number">1.</span> <span class="nav-text">在Tempalte上需要 JavaScript 的完全编程能力</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#更多的ES6标准看齐"><span class="nav-number">2.</span> <span class="nav-text">更多的ES6标准看齐</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
