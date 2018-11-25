@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="其实这也不是什么大新闻了，从Vue2.x开始Vue和React一样实现了render函数, 也实现了一样Diff Visual DOM的渲染方式。官网文档中也有提及JSX在Vue中正确的开箱方式，这里不多赘述怎样在现有项目中引入JSX支持，更多的来谈一谈引入JSX后良好的编程体验。 在Tempalte上需要 JavaScript 的完全编程能力首先需要说明的是我个人对v-if v-for这两个d">
+<meta name="description" content="其实这也不是什么大新闻了，从Vue2.x开始Vue和React一样实现了render函数, 也实现了一样Diff Visual DOM的渲染方式。官网文档中也有提及JSX在Vue中正确的开箱方式，这里不多赘述怎样在现有项目中引入JSX支持，更多的来谈一谈引入JSX后良好的编程体验。 在Template上需要 JavaScript 的完全编程能力首先需要说明的是我个人对v-if v-for这两个d">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用JSX &amp; ES6提升Vue编程体验">
 <meta property="og:url" content="http://debiancc.me/2018/11/23/使用JSX-ES6提高Vue代码体验/index.html">
 <meta property="og:site_name" content="Never Stop Exploring">
-<meta property="og:description" content="其实这也不是什么大新闻了，从Vue2.x开始Vue和React一样实现了render函数, 也实现了一样Diff Visual DOM的渲染方式。官网文档中也有提及JSX在Vue中正确的开箱方式，这里不多赘述怎样在现有项目中引入JSX支持，更多的来谈一谈引入JSX后良好的编程体验。 在Tempalte上需要 JavaScript 的完全编程能力首先需要说明的是我个人对v-if v-for这两个d">
+<meta property="og:description" content="其实这也不是什么大新闻了，从Vue2.x开始Vue和React一样实现了render函数, 也实现了一样Diff Visual DOM的渲染方式。官网文档中也有提及JSX在Vue中正确的开箱方式，这里不多赘述怎样在现有项目中引入JSX支持，更多的来谈一谈引入JSX后良好的编程体验。 在Template上需要 JavaScript 的完全编程能力首先需要说明的是我个人对v-if v-for这两个d">
 <meta property="og:locale" content="zh">
 <meta property="og:image" content="http://debiancc.me/images/pasted-4.png">
-<meta property="og:updated_time" content="2018-11-24T13:09:36.990Z">
+<meta property="og:updated_time" content="2018-11-25T12:20:12.088Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用JSX &amp; ES6提升Vue编程体验">
-<meta name="twitter:description" content="其实这也不是什么大新闻了，从Vue2.x开始Vue和React一样实现了render函数, 也实现了一样Diff Visual DOM的渲染方式。官网文档中也有提及JSX在Vue中正确的开箱方式，这里不多赘述怎样在现有项目中引入JSX支持，更多的来谈一谈引入JSX后良好的编程体验。 在Tempalte上需要 JavaScript 的完全编程能力首先需要说明的是我个人对v-if v-for这两个d">
+<meta name="twitter:description" content="其实这也不是什么大新闻了，从Vue2.x开始Vue和React一样实现了render函数, 也实现了一样Diff Visual DOM的渲染方式。官网文档中也有提及JSX在Vue中正确的开箱方式，这里不多赘述怎样在现有项目中引入JSX支持，更多的来谈一谈引入JSX后良好的编程体验。 在Template上需要 JavaScript 的完全编程能力首先需要说明的是我个人对v-if v-for这两个d">
 <meta name="twitter:image" content="http://debiancc.me/images/pasted-4.png">
 
 
@@ -332,9 +332,9 @@
       
         <p><img src="/images/pasted-4.png" alt="Item.vue"></p>
 <p>其实这也不是什么大新闻了，从Vue2.x开始Vue和React一样实现了render函数, 也实现了一样Diff Visual DOM的渲染方式。官网文档中也有提及JSX在Vue中正确的开箱方式，这里不多赘述怎样在现有项目中引入JSX支持，更多的来谈一谈引入JSX后良好的编程体验。</p>
-<h5 id="在Tempalte上需要-JavaScript-的完全编程能力"><a href="#在Tempalte上需要-JavaScript-的完全编程能力" class="headerlink" title="在Tempalte上需要 JavaScript 的完全编程能力"></a>在Tempalte上需要 JavaScript 的完全编程能力</h5><p>首先需要说明的是我个人对<code>v-if</code> <code>v-for</code>这两个directives使用是有些抗拒的，有些违背逻辑直觉。就像之前写Ruby时看到这样的代码 <code>return true if wtf?</code>（<code>?</code>在Ruby中用于将类型转换为Boolean），在复杂场景下我更关心在什么条件下他会执行逻辑，而不是执行什么逻辑在什么条件下。我不止一次在Ruby和Vue Template的代码中看到这样懵逼的情况出现。在<code>v-for</code>的使用上也是有些的这样意味，但是<code>v-for</code>最为致命的是无法在循环体内加入复杂逻辑，Vue社区哲学强调你应该使用响应式编程的派生对象(<code>computed</code>)来解决，Template上应该保持他的纯净。社区这么洁癖为什么要把模板 逻辑 样式丢在一个文件里。</p>
+<h5 id="在Template上需要-JavaScript-的完全编程能力"><a href="#在Template上需要-JavaScript-的完全编程能力" class="headerlink" title="在Template上需要 JavaScript 的完全编程能力"></a>在Template上需要 JavaScript 的完全编程能力</h5><p>首先需要说明的是我个人对<code>v-if</code> <code>v-for</code>这两个directives使用是有些抗拒的，有些违背逻辑直觉。就像之前写Ruby时看到这样的代码 <code>return true if wtf?</code>（<code>?</code>在Ruby中用于将类型转换为Boolean），在复杂场景下我更关心在什么条件下他会执行逻辑，而不是执行什么逻辑在什么条件下。我不止一次在Ruby和Vue Template的代码中看到这样懵逼的情况出现。在<code>v-for</code>的使用上也是有些的这样意味，但是<code>v-for</code>最为致命的是无法在循环体内加入复杂逻辑，Vue社区哲学强调你应该使用响应式编程的派生对象(<code>computed</code>)来解决，Template上应该保持他的纯净。社区这么洁癖为什么要把模板 逻辑 样式丢在一个文件里。</p>
 <p>无法声明变量，无法调试模板，无法方便的打印关键信息。还有就是文档中也有多次提及render函数比Vue Template更接近Vue compiler，而Vue中的JSX则是和React一样，只是一层createElement语法糖。</p>
-<h5 id="更多的ES6标准看齐"><a href="#更多的ES6标准看齐" class="headerlink" title="更多的ES6标准看齐"></a>更多的ES6标准看齐</h5><p>8012年了，大清都亡了。</p>
+<h5 id="更多的ES6标准看齐"><a href="#更多的ES6标准看齐" class="headerlink" title="更多的ES6标准看齐"></a>更多的ES6标准看齐</h5><p>8012年了，大清都亡了。上点Decorator让你的代码更好看一些吧！</p>
 
       
     </div>
@@ -518,7 +518,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#在Tempalte上需要-JavaScript-的完全编程能力"><span class="nav-number">1.</span> <span class="nav-text">在Tempalte上需要 JavaScript 的完全编程能力</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#更多的ES6标准看齐"><span class="nav-number">2.</span> <span class="nav-text">更多的ES6标准看齐</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#在Template上需要-JavaScript-的完全编程能力"><span class="nav-number">1.</span> <span class="nav-text">在Template上需要 JavaScript 的完全编程能力</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#更多的ES6标准看齐"><span class="nav-number">2.</span> <span class="nav-text">更多的ES6标准看齐</span></a></li></ol></div>
             
 
           </div>
